@@ -27,7 +27,7 @@ final class RMCharacterListView: UIView {
         collectionView.isHidden = true
         collectionView.alpha = 0
         collectionView.translatesAutoresizingMaskIntoConstraints = false
-        collectionView.register(UICollectionViewCell.self, forCellWithReuseIdentifier: "cell")
+        collectionView.register(RMCharacterCollectionViewCell.self, forCellWithReuseIdentifier: RMCharacterCollectionViewCell.cellIdentifier)
         return collectionView
     }()
     
@@ -36,11 +36,11 @@ final class RMCharacterListView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         translatesAutoresizingMaskIntoConstraints = false
-        //backgroundColor = .systemBlue
         addSubviews(collectionView, spinner)
         addConstraints()
         spinner.startAnimating()
         setUpCollectionView()
+        viewModel.fetchCharacters()
     }
     
     required init?(coder: NSCoder) {
